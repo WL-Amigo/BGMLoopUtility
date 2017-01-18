@@ -1,4 +1,8 @@
 #include "includes/WaveFormRW.hpp"
+#include <QAudioDecoder>
+#include <QByteArray>
+#include <QDebug>
+#include <QThread>
 
 WaveFormRW::WaveFormRW() {}
 
@@ -39,9 +43,38 @@ bool WaveFormRW::write(QFile& destFile, WaveFormFileType fileType,
 }
 
 // for RIFF Wave file
-bool WaveFormRW::testRIFFWave(QFile& rwFile) { return false; }
+bool WaveFormRW::testRIFFWave(QFile& rwFile) {
+    rwFile.seek(0);
+    QByteArray header = rwFile.read(12);
+    if(!(header.mid(0, 4) == "RIFF") || !(header.mid(8, 4) == "WAVE")) return false;
+    return true;
+}
 
-WaveFormData* WaveFormRW::readRIFFWave(QFile& rwFile) { return nullptr; }
+WaveFormData* WaveFormRW::readRIFFWave(QFile& rwFile) {
+    QAudioDecoder ad;
+    rwFile.seek(0);
+    ad.setSourceDevice(&rwFile);
+
+    if(ad.error() != QAudioDecoder::NoError){
+        // report error
+        qDebug().noquote() << ad.errorString();
+        return nullptr;
+    }
+
+    ad.start();
+    WaveFormData* wfd = new WaveFormData();
+    QAudioBuffer ab;
+    while(ad.state() != QAudioDecoder::StoppedState){
+        if(ad.bufferAvailable()){
+            ab = ad.read();
+            wfd->push(ab);
+        } else {
+            QThread::msleep(1);
+        }
+    }
+
+    return wfd;
+}
 
 bool WaveFormRW::writeRIFFWave(QFile& rwFile, WaveFormData& wfData) { return false; }
 
