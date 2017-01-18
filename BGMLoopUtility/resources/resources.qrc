@@ -1,1 +1,5 @@
-<RCC/>
+<RCC>
+    <qresource prefix="/">
+        <file alias="pendulum">2011-12-23_1-105-vivid-blue-2x.gif</file>
+    </qresource>
+</RCC>
