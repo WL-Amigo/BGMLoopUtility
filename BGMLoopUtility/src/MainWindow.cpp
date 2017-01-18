@@ -6,6 +6,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    // connect basic behavior
+    connect(ui->actionExit, &QAction::triggered, this, &MainWindow::close);
 }
 
 MainWindow::~MainWindow()
