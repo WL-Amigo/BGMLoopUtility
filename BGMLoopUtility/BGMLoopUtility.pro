@@ -18,13 +18,17 @@ SOURCES += src/main.cpp\
         src/MainWindow.cpp \
     src/WaveFormFileManager.cpp \
     src/WaveFormData.cpp \
-    src/WaveFormRW.cpp
+    src/WaveFormRW.cpp \
+    src/AcceptDropLabel.cpp \
+    src/BytesToIntUtility.cpp
 
 HEADERS  += includes/MainWindow.hpp \
     includes/WaveFormFileManager.hpp \
     includes/WaveFormData.hpp \
     includes/WaveFormRW.hpp \
-    includes/WaveFormFileType.hpp
+    includes/WaveFormFileType.hpp \
+    includes/AcceptDropLabel.hpp \
+    includes/BytesToIntUtility.hpp
 
 FORMS    += forms/MainWindow.ui
 
