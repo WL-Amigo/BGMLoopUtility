@@ -15,6 +15,11 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+private slots:
+    void onBrowse();
+    void onDragAndDrop();
+    void onFileLoad(QString filename);
+
 private:
     Ui::MainWindow *ui;
 };
