@@ -1,4 +1,5 @@
 #include "includes/WaveFormData.hpp"
+#include "includes/BytesToIntUtility.hpp"
 
 WaveFormData::WaveFormData()
 {
@@ -17,4 +18,17 @@ bool WaveFormData::push(QAudioBuffer& buf){
     }
 
     return true;
+}
+
+bool WaveFormData::push(const QByteArray &buf, qint8 byteDepth){
+    if(byteDepth == 2){
+        for(quint32 sidx = 0; sidx < buf.size(); sidx += 4){
+            lChannel.push_back(BytesToIntUtility::toInt16(buf.mid(sidx, 2)));
+            rChannel.push_back(BytesToIntUtility::toInt16(buf.mid(sidx + 2, 2)));
+        }
+    } else { // only support 16bit pcm in current
+        return false;
+    }
+
+    return false;
 }

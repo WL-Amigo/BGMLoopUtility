@@ -9,6 +9,9 @@ WaveFormFileManager::WaveFormFileManager() :
 }
 
 bool WaveFormFileManager::open(QString filePath){
+    // close before load new file
+    close();
+
     // try to open file by filePath
     this->currentFile.setFileName(filePath);
     if(!currentFile.exists()){
@@ -38,17 +41,23 @@ bool WaveFormFileManager::open(QString filePath){
 }
 
 bool WaveFormFileManager::close(){
-    // destroy wave-form data
-    delete this->wfData;
+    if(isOpened()){
+        // destroy wave-form data
+        delete this->wfData;
 
-    // close file
-    this->currentFile.close();
-    this->currentFile.setFileName("");
+        // close file
+        this->currentFile.close();
+        this->currentFile.setFileName("");
 
-    // reset file type
-    this->currentFileType = WaveFormFileType::UNKNOWN;
+        // reset file type
+        this->currentFileType = WaveFormFileType::UNKNOWN;
+    }
 
     return true;
+}
+
+bool WaveFormFileManager::isOpened(){
+    return this->wfData != nullptr && this->currentFile.isOpen();
 }
 
 WaveFormFileType WaveFormFileManager::getFileType(){

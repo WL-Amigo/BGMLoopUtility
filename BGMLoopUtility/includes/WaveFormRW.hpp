@@ -5,10 +5,14 @@
 #include "includes/WaveFormFileType.hpp"
 
 #include <QFile>
+#include <QApplication>
 
 
-class WaveFormRW
+class WaveFormRW : public QObject
 {
+
+    Q_OBJECT
+
 public:
     WaveFormRW();
 

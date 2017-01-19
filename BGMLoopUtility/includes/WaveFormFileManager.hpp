@@ -28,6 +28,7 @@ public:
     bool close();
     WaveFormFileType getFileType();
     WaveFormData* getWaveFormData();
+    bool isOpened();
 
 private:
     QFile currentFile;
