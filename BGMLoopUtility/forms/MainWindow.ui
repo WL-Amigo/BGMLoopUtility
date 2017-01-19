@@ -73,7 +73,7 @@ Please load wave-form file.
          <number>8</number>
         </property>
         <item row="0" column="0">
-         <widget class="QPushButton" name="buttonSALD">
+         <widget class="QToolButton" name="buttonSALD">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
             <horstretch>0</horstretch>
@@ -92,6 +92,9 @@ Please load wave-form file.
             <width>48</width>
             <height>48</height>
            </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
           </property>
          </widget>
         </item>
