@@ -23,7 +23,7 @@
          <item row="0" column="0">
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
-            <widget class="QLabel" name="fileInfoLabel">
+            <widget class="AcceptDropLabel" name="fileInfoLabel">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                <horstretch>3</horstretch>
@@ -126,6 +126,13 @@ Please load wave-form file.
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>AcceptDropLabel</class>
+   <extends>QLabel</extends>
+   <header>includes/AcceptDropLabel.hpp</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../resources/resources.qrc"/>
  </resources>
