@@ -5,7 +5,8 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    lpdGUI(new LoopPointDetectorGUI(nullptr))
 {
     ui->setupUi(this);
 
@@ -14,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // connect application behavior
     connect(ui->fileInfoLabel, &AcceptDropLabel::fileDropped, this, &MainWindow::onFileLoad);
+    connect(ui->buttonSALD, &QToolButton::clicked, lpdGUI, &LoopPointDetectorGUI::show);
 }
 
 MainWindow::~MainWindow()

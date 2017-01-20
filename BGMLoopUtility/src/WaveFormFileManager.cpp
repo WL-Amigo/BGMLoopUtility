@@ -3,9 +3,14 @@
 WaveFormFileManager::WaveFormFileManager() :
     currentFile(),
     currentFileType(WaveFormFileType::UNKNOWN),
-    wfData(nullptr)
+    wfData(nullptr),
+    loopInfoFileName()
 {
 
+}
+
+QString removeExtention(QString fileName){
+    return fileName.mid(0, fileName.lastIndexOf(".") + 1);
 }
 
 bool WaveFormFileManager::open(QString filePath){
@@ -37,6 +42,9 @@ bool WaveFormFileManager::open(QString filePath){
     // get file type
     this->currentFileType = WaveFormRW::test(this->currentFile);
 
+    // set default loop info file name
+    this->loopInfoFileName = removeExtention(filePath) + "_loopinfo.json";
+
     return true;
 }
 
@@ -67,3 +75,5 @@ WaveFormFileType WaveFormFileManager::getFileType(){
 WaveFormData* WaveFormFileManager::getWaveFormData(){
     return this->wfData;
 }
+
+QString WaveFormFileManager::getLoopInfoFileName(){ return this->loopInfoFileName; }

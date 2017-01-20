@@ -65,7 +65,6 @@ bool LoopPointDetector::checkCongruencySample(qint16 lhs, qint16 rhs){
     return (rhs > lhs - ACCEPT_RANGE) && (rhs < lhs + ACCEPT_RANGE);
 }
 
-
-void LoopPointDetector::setSameRange(quint32 newSameRange){
-    this->sameRange = newSameRange;
-}
+void LoopPointDetector::setSameRange(quint32 newSameRange){ this->sameRange = newSameRange; }
+quint32 LoopPointDetector::getLoopStart(){ return this->loopStart; }
+quint32 LoopPointDetector::getLoopLength() { return this->loopLength; }

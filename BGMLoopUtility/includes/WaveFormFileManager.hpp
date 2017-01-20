@@ -29,12 +29,13 @@ public:
     WaveFormFileType getFileType();
     WaveFormData* getWaveFormData();
     bool isOpened();
+    QString getLoopInfoFileName();
 
 private:
     QFile currentFile;
     WaveFormFileType currentFileType;
     WaveFormData* wfData;
-
+    QString loopInfoFileName;
 
 };
 

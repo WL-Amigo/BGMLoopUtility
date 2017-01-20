@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "includes/LoopPointDetectorGUI.hpp"
+
 namespace Ui {
 class MainWindow;
 }
@@ -22,6 +24,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    LoopPointDetectorGUI *lpdGUI;
 };
 
 #endif // MAINWINDOW_HPP

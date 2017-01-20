@@ -10,6 +10,8 @@ public:
     bool detectLoopStart(quint32 assumedLoopEnd);
     bool detectLoopStartSemiauto(quint32 assumedLoopEnd, quint32 skipSample = 1000, quint16 trialNumber = 100);
     void setSameRange(quint32 newSameRange);
+    quint32 getLoopStart();
+    quint32 getLoopLength();
 
 private:
     bool checkCongruencySample(qint16 lhs, qint16 rhs);
