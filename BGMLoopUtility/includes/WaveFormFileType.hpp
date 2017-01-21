@@ -2,10 +2,10 @@
 #define WAVEFORMFILETYPE_HPP
 
 enum class WaveFormFileType {
-    RIFFWAVE,
-    OGGVORBIS,
-    AAC,
-    UNKNOWN
+    RIFFWAVE = 0,
+    OGGVORBIS = 1,
+    AAC = 2,
+    UNKNOWN = -1
 };
 
 #endif // WAVEFORMFILETYPE_HPP
