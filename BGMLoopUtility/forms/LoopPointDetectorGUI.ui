@@ -6,34 +6,39 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>295</width>
-    <height>95</height>
+    <width>338</width>
+    <height>103</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Semi-auto loop point detection</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="2" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QPushButton" name="detectButton">
-       <property name="text">
-        <string>detect</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="quitButton">
-       <property name="text">
-        <string>quit</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="1" column="0">
+   <item row="0" column="0">
     <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="totalSampleLabel">
+       <property name="text">
+        <string>current file's total sample : xxxxxxxx</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="WaveFormViewerSingle" name="waveFormViewer" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>256</height>
+        </size>
+       </property>
+      </widget>
+     </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
@@ -61,21 +66,36 @@
        </item>
       </layout>
      </item>
-    </layout>
-   </item>
-   <item row="0" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <widget class="QLabel" name="totalSampleLabel">
-       <property name="text">
-        <string>current file's total sample : xxxxxxxx</string>
-       </property>
-      </widget>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QPushButton" name="detectButton">
+         <property name="text">
+          <string>detect</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="quitButton">
+         <property name="text">
+          <string>quit</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>WaveFormViewerSingle</class>
+   <extends>QWidget</extends>
+   <header>includes/WaveFormViewerSingle.hpp</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
