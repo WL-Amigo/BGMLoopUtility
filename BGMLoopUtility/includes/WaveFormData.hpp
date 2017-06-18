@@ -11,6 +11,7 @@ public:
     WaveFormData();
     bool push(const QByteArray& buf, qint8 byteDepth);
     bool push(QAudioBuffer& buf);
+    quint32 length();
 
 public:
     QVector<qint16> lChannel;
