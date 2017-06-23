@@ -18,6 +18,7 @@ class WaveFormViewerBase : public QWidget {
 public:
     explicit WaveFormViewerBase(QWidget* parent = nullptr);
     void setRatioExponential(quint8 ratioExp);
+    void clearWaveFormCache();
     quint8 getRatioExponential();
 
 protected:

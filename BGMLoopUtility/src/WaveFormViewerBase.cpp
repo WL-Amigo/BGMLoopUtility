@@ -10,8 +10,10 @@ WaveFormViewerBase::WaveFormViewerBase(QWidget* parent)
 
 void WaveFormViewerBase::setRatioExponential(quint8 ratioExp) {
     this->m_ratioExp = ratioExp;
-    this->m_spCache.clear();
+    this->clearWaveFormCache();
 }
+
+void WaveFormViewerBase::clearWaveFormCache() { this->m_spCache.clear(); }
 
 quint8 WaveFormViewerBase::getRatioExponential() { return this->m_ratioExp; }
 
