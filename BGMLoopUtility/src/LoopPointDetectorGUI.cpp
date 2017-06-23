@@ -12,6 +12,7 @@
 #include <QDebug>
 
 #include "includes/WaveFormFileManager.hpp"
+#include "includes/WaveFormViewerSingle.hpp"
 
 LoopPointDetectorGUI::LoopPointDetectorGUI(QWidget *parent)
     : QWidget(parent), ui(new Ui::LoopPointDetectorGUI), lpd() {
@@ -22,6 +23,8 @@ LoopPointDetectorGUI::LoopPointDetectorGUI(QWidget *parent)
             &LoopPointDetectorGUI::close);
     connect(ui->detectButton, &QPushButton::clicked, this,
             &LoopPointDetectorGUI::startDetection);
+    connect(ui->waveFormViewer, &WaveFormViewerSingle::centerSampleChanged,
+            ui->loopEndSample, &QSpinBox::setValue);
 }
 
 LoopPointDetectorGUI::~LoopPointDetectorGUI() { delete ui; }

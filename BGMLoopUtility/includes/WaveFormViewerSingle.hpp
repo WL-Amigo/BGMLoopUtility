@@ -12,18 +12,25 @@ public:
 
 protected:
     void paintEvent(QPaintEvent* event) override;
+    void mouseMoveEvent(QMouseEvent* event) override;
+    void mousePressEvent(QMouseEvent* event) override;
+    void mouseReleaseEvent(QMouseEvent* event) override;
 
     // getter/setter
 public:
     void setCenterSample(quint32 value);
     quint32 getCenterSample();
-    void setRatioExp(quint8 value);
-    quint8 getRatioExp();
 
 private:
     WaveFormData* waveFormData;
     quint32 centerSample;
-    quint8 ratioExp;
+    bool m_isDragging;
+    int m_dragStartX;
+    quint32 m_dragStartCenterSample;
+
+    // signals
+signals:
+    void centerSampleChanged(quint32 sample);
 };
 
 #endif  // WAVEFORMVIEWERSINGLE_HPP
