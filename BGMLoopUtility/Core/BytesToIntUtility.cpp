@@ -1,11 +1,8 @@
-#include "includes/BytesToIntUtility.hpp"
+#include "BytesToIntUtility.hpp"
 
-BytesToIntUtility::BytesToIntUtility()
-{
+BytesToIntUtility::BytesToIntUtility() {}
 
-}
-
-quint32 BytesToIntUtility::toUInt32(const QByteArray &data, bool bigEndian){
+quint32 BytesToIntUtility::toUInt32(const QByteArray& data, bool bigEndian) {
     Q_ASSERT(data.size() == 4);
     quint32 ret = 0;
     const char* dataPtr = data.data();
@@ -13,7 +10,7 @@ quint32 BytesToIntUtility::toUInt32(const QByteArray &data, bool bigEndian){
     return ret;
 }
 
-quint16 BytesToIntUtility::toUInt16(const QByteArray& data, bool bigEndian){
+quint16 BytesToIntUtility::toUInt16(const QByteArray& data, bool bigEndian) {
     Q_ASSERT(data.size() == 2);
     quint16 ret = 0;
     const char* dataPtr = data.data();
@@ -21,7 +18,7 @@ quint16 BytesToIntUtility::toUInt16(const QByteArray& data, bool bigEndian){
     return ret;
 }
 
-qint16 BytesToIntUtility::toInt16(const QByteArray& data, bool bigEndian){
+qint16 BytesToIntUtility::toInt16(const QByteArray& data, bool bigEndian) {
     Q_ASSERT(data.size() == 2);
     qint16 ret = 0;
     const char* dataPtr = data.data();

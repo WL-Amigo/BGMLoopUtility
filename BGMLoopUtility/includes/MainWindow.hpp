@@ -3,15 +3,14 @@
 
 #include <QMainWindow>
 
+#include "Core/WaveFormFileType.hpp"
 #include "includes/LoopPointDetectorGUI.hpp"
-#include "includes/WaveFormFileType.hpp"
 
 namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
@@ -31,4 +30,4 @@ private:
     LoopPointDetectorGUI *lpdGUI;
 };
 
-#endif // MAINWINDOW_HPP
+#endif  // MAINWINDOW_HPP

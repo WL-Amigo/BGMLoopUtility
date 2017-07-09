@@ -4,7 +4,7 @@
 #include <QColor>
 #include <QVector>
 #include <QWidget>
-#include "includes/WaveFormData.hpp"
+#include "Core/WaveFormData.hpp"
 
 struct SamplePair {
     qint16 lMax;

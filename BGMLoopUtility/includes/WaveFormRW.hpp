@@ -1,16 +1,13 @@
 #ifndef WAVEFORMRW_HPP
 #define WAVEFORMRW_HPP
 
-#include "includes/WaveFormData.hpp"
-#include "includes/WaveFormFileType.hpp"
+#include "Core/WaveFormData.hpp"
+#include "Core/WaveFormFileType.hpp"
 
-#include <QFile>
 #include <QApplication>
+#include <QFile>
 
-
-class WaveFormRW : public QObject
-{
-
+class WaveFormRW : public QObject {
     Q_OBJECT
 
 public:
@@ -18,7 +15,8 @@ public:
 
     static WaveFormFileType test(QFile& wfFile);
     static WaveFormData* read(QFile& wfFile);
-    static bool write(QFile& destFile, WaveFormFileType fileType, WaveFormData& wfData);
+    static bool write(QFile& destFile, WaveFormFileType fileType,
+                      WaveFormData& wfData);
 
 private:
     // for RIFF Wave file
@@ -34,8 +32,7 @@ private:
     // for AAC file
     static bool testAAC(QFile& aacFile);
     static WaveFormData* readAAC(QFile& aacFile);
-//    static bool writeAAC(QFile& aacFile, WaveFormData& wfData);
-
+    //    static bool writeAAC(QFile& aacFile, WaveFormData& wfData);
 };
 
-#endif // WAVEFORMRW_HPP
+#endif  // WAVEFORMRW_HPP
