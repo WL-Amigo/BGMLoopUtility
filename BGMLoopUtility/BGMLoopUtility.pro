@@ -22,7 +22,10 @@ SOURCES += src/main.cpp\
     src/AcceptDropLabel.cpp \
     src/BytesToIntUtility.cpp \
     src/LoopPointDetector.cpp \
-    src/LoopPointDetectorGUI.cpp
+    src/LoopPointDetectorGUI.cpp \
+    src/WaveFormViewerBase.cpp \
+    src/WaveFormViewerSingle.cpp \
+    src/Util.cpp
 
 HEADERS  += includes/MainWindow.hpp \
     includes/WaveFormFileManager.hpp \
@@ -32,7 +35,10 @@ HEADERS  += includes/MainWindow.hpp \
     includes/AcceptDropLabel.hpp \
     includes/BytesToIntUtility.hpp \
     includes/LoopPointDetector.hpp \
-    includes/LoopPointDetectorGUI.hpp
+    includes/LoopPointDetectorGUI.hpp \
+    includes/WaveFormViewerBase.hpp \
+    includes/WaveFormViewerSingle.hpp \
+    includes/Util.hpp
 
 FORMS    += forms/MainWindow.ui \
     forms/LoopPointDetectorGUI.ui
