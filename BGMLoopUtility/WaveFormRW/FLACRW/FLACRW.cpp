@@ -103,10 +103,12 @@ WaveFormData *FLACRW::read(QFile &file) {
     WaveFormData *result = new WaveFormData();
     FLACToWFDDecoder decoder(result);
     decoder.setFile(file);
+    decoder.init();
     bool status = decoder.process_until_end_of_stream();
     if (!status) {
         qDebug().noquote()
             << "ERROR:FLACRW: something wrong is occured in decoding process";
+        qDebug().noquote() << decoder.get_state().resolved_as_cstring(decoder);
         delete result;
         return nullptr;
     }

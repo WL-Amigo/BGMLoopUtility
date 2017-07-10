@@ -31,11 +31,9 @@ MainWindow::~MainWindow() { delete ui; }
 void MainWindow::onBrowse() {
     QFileDialog fileDialog;
     fileDialog.setFileMode(QFileDialog::AnyFile);
-    fileDialog.setNameFilter(tr("wave-form file (*.wav)"));
+    fileDialog.setNameFilter(tr("wave-form file (*.wav);;FLAC (*.flac)"));
     fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
-    if (fileDialog.exec()) {
-        onFileLoad(fileDialog.selectedFiles().at(0));
-    }
+    if (fileDialog.exec()) { onFileLoad(fileDialog.selectedFiles().at(0)); }
 }
 
 void MainWindow::onDragAndDrop() {}
@@ -51,7 +49,8 @@ static bool AVAILABLE_TOOL_SET[][1] = {
     // 0 : Semi-auto loop point detector
     {true},   // RIFF Wave
     {false},  // Ogg Vorbis
-    {false}   // AAC
+    {false},  // AAC
+    {true}    // FLAC
 };
 
 void MainWindow::enableToolButtons(WaveFormFileType wfFileType) {
