@@ -1,30 +1,27 @@
-#include "includes/WaveFormFileManager.hpp"
+#include "WaveFormFileManager.hpp"
 
-WaveFormFileManager::WaveFormFileManager() :
-    currentFile(),
-    currentFileType(WaveFormFileType::UNKNOWN),
-    wfData(nullptr),
-    loopInfoFileName()
-{
+WaveFormFileManager::WaveFormFileManager()
+    : currentFile(),
+      currentFileType(WaveFormFileType::UNKNOWN),
+      wfData(nullptr),
+      loopInfoFileName() {}
 
-}
-
-QString removeExtention(QString fileName){
+QString removeExtention(QString fileName) {
     return fileName.mid(0, fileName.lastIndexOf(".") + 1);
 }
 
-bool WaveFormFileManager::open(QString filePath){
+bool WaveFormFileManager::open(QString filePath) {
     // close before load new file
     close();
 
     // try to open file by filePath
     this->currentFile.setFileName(filePath);
-    if(!currentFile.exists()){
+    if (!currentFile.exists()) {
         // TODO: report error
         this->currentFile.setFileName("");
         return false;
     }
-    if(!currentFile.open(QFileDevice::ReadOnly)){
+    if (!currentFile.open(QFileDevice::ReadOnly)) {
         // TODO: report error
         this->currentFile.setFileName("");
         return false;
@@ -32,7 +29,7 @@ bool WaveFormFileManager::open(QString filePath){
 
     // try to decode file and get wave-form data
     this->wfData = WaveFormRW::read(this->currentFile);
-    if(this->wfData == nullptr){
+    if (this->wfData == nullptr) {
         // TODO: report error
         this->currentFile.close();
         this->currentFile.setFileName("");
@@ -48,8 +45,8 @@ bool WaveFormFileManager::open(QString filePath){
     return true;
 }
 
-bool WaveFormFileManager::close(){
-    if(isOpened()){
+bool WaveFormFileManager::close() {
+    if (isOpened()) {
         // destroy wave-form data
         delete this->wfData;
 
@@ -64,16 +61,16 @@ bool WaveFormFileManager::close(){
     return true;
 }
 
-bool WaveFormFileManager::isOpened(){
+bool WaveFormFileManager::isOpened() {
     return this->wfData != nullptr && this->currentFile.isOpen();
 }
 
-WaveFormFileType WaveFormFileManager::getFileType(){
+WaveFormFileType WaveFormFileManager::getFileType() {
     return this->currentFileType;
 }
 
-WaveFormData* WaveFormFileManager::getWaveFormData(){
-    return this->wfData;
-}
+WaveFormData* WaveFormFileManager::getWaveFormData() { return this->wfData; }
 
-QString WaveFormFileManager::getLoopInfoFileName(){ return this->loopInfoFileName; }
+QString WaveFormFileManager::getLoopInfoFileName() {
+    return this->loopInfoFileName;
+}

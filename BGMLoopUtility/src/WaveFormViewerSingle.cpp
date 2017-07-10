@@ -3,8 +3,8 @@
 #include <QMouseEvent>
 #include <QPainter>
 #include <QtMath>
-#include "includes/Util.hpp"
-#include "includes/WaveFormFileManager.hpp"
+#include "Core/Util.hpp"
+#include "Core/WaveFormFileManager.hpp"
 
 WaveFormViewerSingle::WaveFormViewerSingle(QWidget* parent)
     : WaveFormViewerBase(parent), centerSample(4096), m_isDragging(false) {

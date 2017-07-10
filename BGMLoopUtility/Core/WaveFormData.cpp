@@ -1,5 +1,5 @@
-#include "includes/WaveFormData.hpp"
-#include "includes/BytesToIntUtility.hpp"
+#include "WaveFormData.hpp"
+#include "BytesToIntUtility.hpp"
 
 WaveFormData::WaveFormData() {}
 

@@ -5,7 +5,8 @@ enum class WaveFormFileType {
     RIFFWAVE = 0,
     OGGVORBIS = 1,
     AAC = 2,
+    FLAC = 3,
     UNKNOWN = -1
 };
 
-#endif // WAVEFORMFILETYPE_HPP
+#endif  // WAVEFORMFILETYPE_HPP

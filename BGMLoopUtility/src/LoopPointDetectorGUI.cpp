@@ -11,7 +11,7 @@
 
 #include <QDebug>
 
-#include "includes/WaveFormFileManager.hpp"
+#include "Core/WaveFormFileManager.hpp"
 #include "includes/WaveFormViewerSingle.hpp"
 
 LoopPointDetectorGUI::LoopPointDetectorGUI(QWidget *parent)

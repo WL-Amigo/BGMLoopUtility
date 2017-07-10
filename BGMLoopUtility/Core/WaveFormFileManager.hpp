@@ -1,14 +1,13 @@
 #ifndef WAVEFORMFILEMANAGER_HPP
 #define WAVEFORMFILEMANAGER_HPP
 
-#include "includes/WaveFormData.hpp"
+#include "Core/WaveFormData.hpp"
+#include "Core/WaveFormFileType.hpp"
 #include "includes/WaveFormRW.hpp"
-#include "includes/WaveFormFileType.hpp"
 
 #include <QFile>
 
-class WaveFormFileManager
-{
+class WaveFormFileManager {
 private:
     WaveFormFileManager();
     ~WaveFormFileManager() = default;
@@ -19,7 +18,7 @@ public:
     WaveFormFileManager(WaveFormFileManager&&) = delete;
     WaveFormFileManager& operator=(WaveFormFileManager&&) = delete;
 
-    static WaveFormFileManager& getInstance(){
+    static WaveFormFileManager& getInstance() {
         static WaveFormFileManager wffm;
         return wffm;
     }
@@ -36,7 +35,6 @@ private:
     WaveFormFileType currentFileType;
     WaveFormData* wfData;
     QString loopInfoFileName;
-
 };
 
-#endif // WAVEFORMFILEMANAGER_HPP
+#endif  // WAVEFORMFILEMANAGER_HPP
