@@ -3,7 +3,7 @@ QT += core
 INCLUDEPATH += ../ \
     $$PWD/libflac-include
 
-LIBS:UNIX += -lflac8
+unix:LIBS += -lFLAC -lFLAC++
 
 HEADERS += \
     $$PWD/FLACRW.hpp
