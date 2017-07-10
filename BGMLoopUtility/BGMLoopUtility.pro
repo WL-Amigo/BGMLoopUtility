@@ -15,8 +15,7 @@ CONFIG += c++11
 
 
 SOURCES += src/main.cpp\
-        src/MainWindow.cpp \
-    #src/WaveFormRW.cpp \
+    src/MainWindow.cpp \
     src/AcceptDropLabel.cpp \
     src/LoopPointDetector.cpp \
     src/LoopPointDetectorGUI.cpp \
@@ -24,7 +23,6 @@ SOURCES += src/main.cpp\
     src/WaveFormViewerSingle.cpp \
 
 HEADERS  += includes/MainWindow.hpp \
-    #includes/WaveFormRW.hpp \
     includes/AcceptDropLabel.hpp \
     includes/LoopPointDetector.hpp \
     includes/LoopPointDetectorGUI.hpp \

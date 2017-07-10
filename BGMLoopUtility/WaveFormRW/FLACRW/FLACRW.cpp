@@ -22,17 +22,6 @@ void FLACToWFDDecoder::setFile(QFile &file) {
 
 FLAC__StreamDecoderReadStatus FLACToWFDDecoder::read_callback(
     FLAC__byte buffer[], size_t *bytes) {
-    /*if(*bytes > 0) {
-    5     *bytes = fread(buffer, sizeof(FLAC__byte), *bytes, file);
-    6     if(ferror(file))
-    7       return FLAC__STREAM_DECODER_READ_STATUS_ABORT;
-    8     else if(*bytes == 0)
-    9       return FLAC__STREAM_DECODER_READ_STATUS_END_OF_STREAM;
-   10     else
-   11       return FLAC__STREAM_DECODER_READ_STATUS_CONTINUE;
-   12   }
-   13   else
-   14     return FLAC__STREAM_DECODER_READ_STATUS_ABORT;*/
     if (*bytes > 0) {
         *bytes = this->m_file.read(reinterpret_cast<char *>(buffer), *bytes);
         if (this->m_file.error() != QFileDevice::NoError) {
