@@ -7,7 +7,7 @@ WaveFormFileManager::WaveFormFileManager()
       loopInfoFileName() {}
 
 QString removeExtention(QString fileName) {
-    return fileName.mid(0, fileName.lastIndexOf(".") + 1);
+    return fileName.mid(0, fileName.lastIndexOf("."));
 }
 
 bool WaveFormFileManager::open(QString filePath) {

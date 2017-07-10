@@ -14,6 +14,7 @@ WaveFormViewerSingle::WaveFormViewerSingle(QWidget* parent)
 
 void WaveFormViewerSingle::reloadWaveFormFile() {
     this->waveFormData = WaveFormFileManager::getInstance().getWaveFormData();
+    this->clearWaveFormCache();
     this->update();
 }
 
@@ -44,8 +45,8 @@ void WaveFormViewerSingle::mouseMoveEvent(QMouseEvent* event) {
         // move center sample by current ratio
         int dragLength = event->x() - this->m_dragStartX;
         this->setCenterSample(
-            this->m_dragStartCenterSample -
-            dragLength * Util::powerOfTwo(this->getRatioExponential()));
+            this->m_dragStartCenterSample
+            - dragLength * Util::powerOfTwo(this->getRatioExponential()));
     }
 }
 
