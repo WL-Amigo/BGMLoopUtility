@@ -7,6 +7,7 @@
 class FLACToWFDDecoder : public FLAC::Decoder::Stream {
 public:
     FLACToWFDDecoder(WaveFormData* destWFD);
+    ~FLACToWFDDecoder();
     void setFile(QFile& file);
 
 protected:

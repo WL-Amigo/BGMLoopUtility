@@ -11,6 +11,10 @@ FLACToWFDDecoder::FLACToWFDDecoder(WaveFormData *destWFD)
       m_bps(0),
       m_wfdPtr(destWFD) {}
 
+FLACToWFDDecoder::~FLACToWFDDecoder() {
+    if (this->m_file.isOpen()) this->m_file.close();
+}
+
 void FLACToWFDDecoder::setFile(QFile &file) {
     m_file.setFileName(file.fileName());
     if (!m_file.isOpen()) { m_file.open(QIODevice::ReadOnly); }
@@ -45,9 +49,6 @@ FLAC__StreamDecoderReadStatus FLACToWFDDecoder::read_callback(
 
 FLAC__StreamDecoderWriteStatus FLACToWFDDecoder::write_callback(
     const FLAC__Frame *frame, const FLAC__int32 *const buffer[]) {
-    const quint64 totalSize = static_cast<quint64>(
-        this->m_totalSamples * this->m_channelNum * (this->m_bps / 8));
-
     if (this->m_totalSamples == 0) {
         qDebug().noquote()
             << "ERROR:FLACToWFDDecoder: this program only works for FLAC files "
@@ -92,6 +93,22 @@ FLACRW::FLACRW() {}
 
 FLACRW::~FLACRW() {}
 
-bool FLACRW::test(QFile &file) {}
+bool FLACRW::test(QFile &file) {
+    FLACToWFDDecoder decoder(nullptr);
+    decoder.setFile(file);
+    return decoder.init() == FLAC__STREAM_DECODER_INIT_STATUS_OK;
+}
 
-WaveFormData *FLACRW::read(QFile &file) {}
+WaveFormData *FLACRW::read(QFile &file) {
+    WaveFormData *result = new WaveFormData();
+    FLACToWFDDecoder decoder(result);
+    decoder.setFile(file);
+    bool status = decoder.process_until_end_of_stream();
+    if (!status) {
+        qDebug().noquote()
+            << "ERROR:FLACRW: something wrong is occured in decoding process";
+        delete result;
+        return nullptr;
+    }
+    return result;
+}
