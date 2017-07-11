@@ -38,6 +38,7 @@ FLAC__StreamDecoderReadStatus FLACToWFDDecoder::read_callback(
 
 FLAC__StreamDecoderWriteStatus FLACToWFDDecoder::write_callback(
     const FLAC__Frame *frame, const FLAC__int32 *const buffer[]) {
+    const qint32 shrink = this->m_bps > 16 ? (1 << (this->m_bps - 16)) : 1;
     if (this->m_totalSamples == 0) {
         qDebug().noquote()
             << "ERROR:FLACToWFDDecoder: this program only works for FLAC files "
@@ -55,9 +56,19 @@ FLAC__StreamDecoderWriteStatus FLACToWFDDecoder::write_callback(
         return FLAC__STREAM_DECODER_WRITE_STATUS_ABORT;
     }
 
-    for (unsigned i = 0; i < frame->header.blocksize; i++) {
-        m_wfdPtr->lChannel.push_back(static_cast<qint16>(buffer[0][i]));
-        m_wfdPtr->rChannel.push_back(static_cast<qint16>(buffer[1][i]));
+    // if bitrate is larger than 16, shrink it before casting
+    if (shrink > 1) {
+        for (unsigned i = 0; i < frame->header.blocksize; i++) {
+            m_wfdPtr->lChannel.push_back(
+                static_cast<qint16>(buffer[0][i] / shrink));
+            m_wfdPtr->rChannel.push_back(
+                static_cast<qint16>(buffer[1][i] / shrink));
+        }
+    } else {
+        for (unsigned i = 0; i < frame->header.blocksize; i++) {
+            m_wfdPtr->lChannel.push_back(static_cast<qint16>(buffer[0][i]));
+            m_wfdPtr->rChannel.push_back(static_cast<qint16>(buffer[1][i]));
+        }
     }
 
     return FLAC__STREAM_DECODER_WRITE_STATUS_CONTINUE;
@@ -70,6 +81,7 @@ void FLACToWFDDecoder::metadata_callback(
         this->m_sampleRate = metadata->data.stream_info.sample_rate;
         this->m_channelNum = metadata->data.stream_info.channels;
         this->m_bps = metadata->data.stream_info.bits_per_sample;
+        qDebug().noquote() << "FLACToWFDDecoder:bit per second:" << this->m_bps;
     }
 }
 
