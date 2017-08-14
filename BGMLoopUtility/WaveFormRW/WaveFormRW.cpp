@@ -1,5 +1,7 @@
 #include "WaveFormRW.hpp"
+#ifdef BGMLU_ENABLE_FLAC
 #include "FLACRW/FLACRW.hpp"
+#endif
 #include "RIFFWaveRW/RIFFWaveRW.hpp"
 
 // dummy methods for abstract class
@@ -11,7 +13,10 @@ IWaveFormRW::~IWaveFormRW() {}
 
 QMap<WaveFormFileType, IWaveFormRW*> WaveFormRW::s_fileTypeToRWer
     = {{WaveFormFileType::RIFFWAVE, new RIFFWaveRW()},
-       {WaveFormFileType::FLAC, new FLACRW()}};
+#ifdef BGMLU_ENABLE_FLAC
+       {WaveFormFileType::FLAC, new FLACRW()}
+#endif
+      };
 
 WaveFormFileType WaveFormRW::test(QFile& wfFile) {
     auto it = s_fileTypeToRWer.constBegin();
